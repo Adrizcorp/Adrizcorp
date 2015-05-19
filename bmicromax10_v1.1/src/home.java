@@ -297,7 +297,7 @@ public class home extends javax.swing.JFrame
 
         jCheckBox15.setBackground(new java.awt.Color(204, 161, 124));
         jCheckBox15.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jCheckBox15.setText("Sdram(8Mb)");
+        jCheckBox15.setText("Sdram(8MB)");
         jCheckBox15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox15ActionPerformed(evt);
