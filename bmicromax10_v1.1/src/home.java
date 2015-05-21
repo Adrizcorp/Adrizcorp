@@ -1443,6 +1443,7 @@ texto_qsf = texto_qsf + "#ACCELEROMETER\n" +
 "\n" +
 "#OTHER SETTINGS\n" +
 "set_global_assignment -name VERILOG_FILE "+textField1.getText()+".v\n" +
+"set_global_assignment -name SDC_FILE bemicro_m10_nios2_top.sdc\n"+
 "set_global_assignment -name SOURCE_FILE \"BeMicro_MAX_10_-_ISSI_IS42S16400J-7TL.qprs\"\n" +
 "\n" +
 "set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top";
@@ -1498,6 +1499,161 @@ BufferedWriter bw1;
         } catch (IOException ex) {
             Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+         File archivo5 = new File(directorio.getAbsoluteFile()+"/"+"bemicro_m10_nios2_top.sdc");
+          
+BufferedWriter bw5;
+      
+       
+        try {
+            bw5 = new BufferedWriter(new FileWriter(archivo5)); //filewrite esrescribe dentro del archivo
+             bw5.write("## Generated SDC file \"top.out.sdc\"\n" +
+"\n" +
+"## Copyright (C) 1991-2014 Altera Corporation. All rights reserved.\n" +
+"## Your use of Altera Corporation's design tools, logic functions \n" +
+"## and other software and tools, and its AMPP partner logic \n" +
+"## functions, and any output files from any of the foregoing \n" +
+"## (including device programming or simulation files), and any \n" +
+"## associated documentation or information are expressly subject \n" +
+"## to the terms and conditions of the Altera Program License \n" +
+"## Subscription Agreement, the Altera Quartus II License Agreement,\n" +
+"## the Altera MegaCore Function License Agreement, or other \n" +
+"## applicable license agreement, including, without limitation, \n" +
+"## that your use is for the sole purpose of programming logic \n" +
+"## devices manufactured by Altera and sold by Altera or its \n" +
+"## authorized distributors.  Please refer to the applicable \n" +
+"## agreement for further details.\n" +
+"\n" +
+"\n" +
+"## VENDOR  \"Altera\"\n" +
+"## PROGRAM \"Quartus II\"\n" +
+"## VERSION \"Version 14.0.1 Build 205 08/13/2014 Patches 1.01 SJ Full Version\"\n" +
+"\n" +
+"## DATE    \""+jLabel7.getText()+"\"\n" +
+"\n" +
+"##\n" +
+"## DEVICE  \"10M08DAF484C8GES\"\n" +
+"##\n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Time Information\n" +
+"#**************************************************************\n" +
+"\n" +
+"set_time_format -unit ns -decimal_places 3\n" +
+"\n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Create Clock\n" +
+"#**************************************************************\n" +
+"\n" +
+"create_clock -name {altera_reserved_tck} -period 100.000 -waveform { 0.000 50.000 } [get_ports {altera_reserved_tck}]\n" +
+"create_clock -name altera_internal_jtag~TCKUTAP -period 100.000 altera_internal_jtag~TCKUTAP\n" +
+"create_clock -name {SYS_CLK} -period 20.000 -waveform { 0.000 10.000 } [get_ports {SYS_CLK}]\n" +
+"create_clock -name {USER_CLK} -period 41.667 -waveform { 0.000 20.803 } [get_ports {USER_CLK}]\n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Create Generated Clock\n" +
+"#**************************************************************\n" +
+"\n" +
+"create_generated_clock -name {u0|sdram_pll|sd1|pll7|clk[0]} -source [get_pins {u0|sdram_pll|sd1|pll7|inclk[0]}] -duty_cycle 50.000 -multiply_by 1 -master_clock {SYS_CLK} [get_pins {u0|sdram_pll|sd1|pll7|clk[0]}] \n" +
+"create_generated_clock -name {u0|sdram_pll|sd1|pll7|clk[1]} -source [get_pins {u0|sdram_pll|sd1|pll7|inclk[0]}] -duty_cycle 50.000 -multiply_by 1 -phase -90.000 -master_clock {SYS_CLK} [get_pins {u0|sdram_pll|sd1|pll7|clk[1]}] \n" +
+"create_generated_clock -name {u0|adc_pll|sd1|pll7|clk[0]} -source [get_pins {u0|adc_pll|sd1|pll7|inclk[0]}] -duty_cycle 50.000 -multiply_by 1 -divide_by 5 -master_clock {SYS_CLK} [get_pins {u0|adc_pll|sd1|pll7|clk[0]}] \n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Set Clock Latency\n" +
+"#**************************************************************\n" +
+"\n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Set Clock Uncertainty\n" +
+"#**************************************************************\n" +
+"\n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Set Input Delay\n" +
+"#**************************************************************\n" +
+"\n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Set Output Delay\n" +
+"#**************************************************************\n" +
+"\n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Set Clock Groups\n" +
+"#**************************************************************\n" +
+"\n" +
+"set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}] \n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Set False Path\n" +
+"#**************************************************************\n" +
+"\n" +
+"set_false_path -from [get_registers {*|alt_jtag_atlantic:*|jupdate}] -to [get_registers {*|alt_jtag_atlantic:*|jupdate1*}]\n" +
+"set_false_path -from [get_registers {*|alt_jtag_atlantic:*|rdata[*]}] -to [get_registers {*|alt_jtag_atlantic*|td_shift[*]}]\n" +
+"set_false_path -from [get_registers {*|alt_jtag_atlantic:*|read}] -to [get_registers {*|alt_jtag_atlantic:*|read1*}]\n" +
+"set_false_path -from [get_registers {*|alt_jtag_atlantic:*|read_req}] \n" +
+"set_false_path -from [get_registers {*|alt_jtag_atlantic:*|rvalid}] -to [get_registers {*|alt_jtag_atlantic*|td_shift[*]}]\n" +
+"set_false_path -from [get_registers {*|t_dav}] -to [get_registers {*|alt_jtag_atlantic:*|tck_t_dav}]\n" +
+"set_false_path -from [get_registers {*|alt_jtag_atlantic:*|user_saw_rvalid}] -to [get_registers {*|alt_jtag_atlantic:*|rvalid0*}]\n" +
+"set_false_path -from [get_registers {*|alt_jtag_atlantic:*|wdata[*]}] -to [get_registers *]\n" +
+"set_false_path -from [get_registers {*|alt_jtag_atlantic:*|write}] -to [get_registers {*|alt_jtag_atlantic:*|write1*}]\n" +
+"set_false_path -from [get_registers {*|alt_jtag_atlantic:*|write_stalled}] -to [get_registers {*|alt_jtag_atlantic:*|t_ena*}]\n" +
+"set_false_path -from [get_registers {*|alt_jtag_atlantic:*|write_stalled}] -to [get_registers {*|alt_jtag_atlantic:*|t_pause*}]\n" +
+"set_false_path -from [get_registers {*|alt_jtag_atlantic:*|write_valid}] \n" +
+"set_false_path -from [get_registers {*altera_avalon_st_clock_crosser:*|in_data_buffer*}] -to [get_registers {*altera_avalon_st_clock_crosser:*|out_data_buffer*}]\n" +
+"set_false_path -to [get_keepers {*altera_std_synchronizer:*|din_s1}]\n" +
+"set_false_path -to [get_pins -nocase -compatibility_mode {*|alt_rst_sync_uq1|altera_reset_synchronizer_int_chain*|clrn}]\n" +
+"set_false_path -from [get_registers {*altera_jtag_src_crosser:*|sink_data_buffer*}] -to [get_registers {*altera_jtag_src_crosser:*|src_data*}]\n" +
+"set_false_path -from [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_nios2_oci_break:the_nios_system_cpu_nios2_oci_break|break_readreg*}] -to [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_jtag_debug_slave_wrapper:the_nios_system_cpu_jtag_debug_slave_wrapper|nios_system_cpu_jtag_debug_slave_tck:the_nios_system_cpu_jtag_debug_slave_tck|*sr*}]\n" +
+"set_false_path -from [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_nios2_oci_debug:the_nios_system_cpu_nios2_oci_debug|*resetlatch}] -to [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_jtag_debug_slave_wrapper:the_nios_system_cpu_jtag_debug_slave_wrapper|nios_system_cpu_jtag_debug_slave_tck:the_nios_system_cpu_jtag_debug_slave_tck|*sr[33]}]\n" +
+"set_false_path -from [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_nios2_oci_debug:the_nios_system_cpu_nios2_oci_debug|monitor_ready}] -to [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_jtag_debug_slave_wrapper:the_nios_system_cpu_jtag_debug_slave_wrapper|nios_system_cpu_jtag_debug_slave_tck:the_nios_system_cpu_jtag_debug_slave_tck|*sr[0]}]\n" +
+"set_false_path -from [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_nios2_oci_debug:the_nios_system_cpu_nios2_oci_debug|monitor_error}] -to [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_jtag_debug_slave_wrapper:the_nios_system_cpu_jtag_debug_slave_wrapper|nios_system_cpu_jtag_debug_slave_tck:the_nios_system_cpu_jtag_debug_slave_tck|*sr[34]}]\n" +
+"set_false_path -from [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_nios2_ocimem:the_nios_system_cpu_nios2_ocimem|*MonDReg*}] -to [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_jtag_debug_slave_wrapper:the_nios_system_cpu_jtag_debug_slave_wrapper|nios_system_cpu_jtag_debug_slave_tck:the_nios_system_cpu_jtag_debug_slave_tck|*sr*}]\n" +
+"set_false_path -from [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_jtag_debug_slave_wrapper:the_nios_system_cpu_jtag_debug_slave_wrapper|nios_system_cpu_jtag_debug_slave_tck:the_nios_system_cpu_jtag_debug_slave_tck|*sr*}] -to [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_jtag_debug_slave_wrapper:the_nios_system_cpu_jtag_debug_slave_wrapper|nios_system_cpu_jtag_debug_slave_sysclk:the_nios_system_cpu_jtag_debug_slave_sysclk|*jdo*}]\n" +
+"set_false_path -from [get_keepers {sld_hub:*|irf_reg*}] -to [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_jtag_debug_slave_wrapper:the_nios_system_cpu_jtag_debug_slave_wrapper|nios_system_cpu_jtag_debug_slave_sysclk:the_nios_system_cpu_jtag_debug_slave_sysclk|ir*}]\n" +
+"set_false_path -from [get_keepers {sld_hub:*|sld_shadow_jsm:shadow_jsm|state[1]}] -to [get_keepers {*nios_system_cpu:*|nios_system_cpu_nios2_oci:the_nios_system_cpu_nios2_oci|nios_system_cpu_nios2_oci_debug:the_nios_system_cpu_nios2_oci_debug|monitor_go}]\n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Set Multicycle Path\n" +
+"#**************************************************************\n" +
+"\n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Set Maximum Delay\n" +
+"#**************************************************************\n" +
+"\n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Set Minimum Delay\n" +
+"#**************************************************************\n" +
+"\n" +
+"\n" +
+"\n" +
+"#**************************************************************\n" +
+"# Set Input Transition\n" +
+"#**************************************************************\n" +
+"");
+             bw5.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         
         File archivo3 = new File(directorio.getAbsoluteFile()+"/"+textField1.getText()+".qpf");
           
